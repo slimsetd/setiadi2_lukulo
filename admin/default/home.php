@@ -31,6 +31,9 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 if (!isset($_COOKIE['admin_logged_in'])) {
   header('Location: ../../?p=login');
 }
+
+// Add dependence
+require LIB.'setiadi_utility.inc.php';
 ?>
 <fieldset class="menuBox adminHome">
 <div class="menuBoxInner">
