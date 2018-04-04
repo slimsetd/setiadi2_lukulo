@@ -112,7 +112,7 @@ if (isset($_POST['doExport'])) {
         } else {
             if ($all_data_q->num_rows > 0) {
                 header('Content-type: text/plain');
-                header('Content-Disposition: attachment; filename="senayan_item_export.csv"');
+                header('Content-Disposition: attachment; filename="setiadi_item_export.csv"');
                 while ($item_d = $all_data_q->fetch_row()) {
                     $buffer = null;
                     foreach ($item_d as $idx => $fld_d) {
