@@ -117,11 +117,11 @@ class alternativeTheme
 		$file = '../../admin_template/'.$templateDir.'/info.theme.php';
 		if (file_exists($file)){
 			require $file;
-			$themeInfo['theme']['origin']      = $theme['info']['origin'];
-			$themeInfo['theme']['author']      = $theme['info']['author'];
-			$themeInfo['theme']['modified']    = $theme['info']['modified'];
-			$themeInfo['theme']['version']     = $theme['info']['version'];
-			$themeInfo['theme']['description'] = $theme['info']['description'];
+			$themeInfo['theme']['origin']      = (isset($theme['info']['origin']))?$theme['info']['origin']:'Not Defined';
+			$themeInfo['theme']['author']      = (isset($theme['info']['author']))?$theme['info']['author']:'Not Defined';
+			$themeInfo['theme']['modified']    = (isset($theme['info']['modified']))?$theme['info']['modified']:'Not Defined';
+			$themeInfo['theme']['version']     = (isset($theme['info']['version']))?$theme['info']['version']:'Not Defined';
+			$themeInfo['theme']['description'] = (isset($theme['info']['description']))?$theme['info']['description']:'Not Defined';
 		} else {
 			$themeInfo['theme']['origin']      = 'None';
 			$themeInfo['theme']['author']      = 'None';
@@ -142,11 +142,11 @@ class alternativeTheme
 		$file = '../../../template/'.$templateDir.'/info.theme.php';
 		if (file_exists($file)){
 			require $file;
-			$themeInfo['theme']['origin']      = $theme['info']['origin'];
-			$themeInfo['theme']['author']      = $theme['info']['author'];
-			$themeInfo['theme']['modified']    = $theme['info']['modified'];
-			$themeInfo['theme']['version']     = $theme['info']['version'];
-			$themeInfo['theme']['description'] = $theme['info']['description'];
+			$themeInfo['theme']['origin']      = (isset($theme['info']['origin']))?$theme['info']['origin']:'Not Defined';
+			$themeInfo['theme']['author']      = (isset($theme['info']['author']))?$theme['info']['author']:'Not Defined';
+			$themeInfo['theme']['modified']    = (isset($theme['info']['modified']))?$theme['info']['modified']:'Not Defined';
+			$themeInfo['theme']['version']     = (isset($theme['info']['version']))?$theme['info']['version']:'Not Defined';
+			$themeInfo['theme']['description'] = (isset($theme['info']['description']))?$theme['info']['description']:'Not Defined';
 		} else {
 			$themeInfo['theme']['origin']      = 'None';
 			$themeInfo['theme']['author']      = 'None';
