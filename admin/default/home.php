@@ -77,7 +77,7 @@ if (!file_exists($sysconf['mysqldump'])) {
 }
 // check installer directory
 if (is_dir('../install/')) {
-    $warnings[] = __('Installer folder is still exist inside your server. Please remove it or rename to another name for security reason.');
+    $warnings[] = __('Installer folder is still exist inside your server. Please remove it or rename to another name for security reason. <button id="rmdir" class="btn btn-primary">Remove Installer</button>');
 }
 
 if ($_SESSION['uid'] === '1') {
@@ -96,7 +96,16 @@ if ($_SESSION['uid'] === '1') {
       }
     }
   }
-
+  
+  if (isset($_POST['removeDir']) AND ($_POST['removeDir'] == true)) {
+    $renameIt = rename('../install', '../.'.setiadi_utility::generateRandomString(32));
+    if ($renameIt) {
+      echo '1';
+    } else {
+      echo "Failed to remove the installer folder! make sure your installer folder its owned by apache daemon user.";
+    }
+    exit();
+  }	
 
   while ($row = $query_of_tables->fetch_row()) {
     $query_of_check = $dbs->query('CHECK TABLE '.$row[0]);
@@ -215,5 +224,15 @@ function getBookData($dbs)
     <td><div class="box-dasboard general visual" style="background: #2b5797;"><b class="icon fa fa-chart-pie"></b><br><b>Visual Diagram</b></div></td>
   </tr>
 </table>
-
+<script type="text/javascript">
+  // Post process
+  $('#rmdir').click(function(){
+      $.post("<?php echo $_SERVER['PHP_SELF'];?>", {removeDir: true}, function(result){
+        if (result != 1) {
+          alert('Installer has been removed!');
+          window.location.href = "<?php echo AWB;?>";
+        } 
+      });
+  });
+</script>
 

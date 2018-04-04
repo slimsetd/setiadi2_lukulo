@@ -60,5 +60,16 @@ class setiadi_utility
 	   }
 	   return $array;
 	}
+	
+	// Function to generate random string
+	function generateRandomString($length = 10) {
+	    $char = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	    $charLength = strlen($char);
+	    $randString = '';
+	    for ($i = 0; $i < $length; $i++) {
+	        $randString .= $char[rand(0, $charLength - 1)];
+	    }
+	    return $randString;
+	}
 }
 ?>
