@@ -545,7 +545,7 @@ if (isset($_POST['detail']) OR (isset($_GET['action']) AND $_GET['action'] == 'd
     if (!$setiadiForm->inPop) {
       $str_anything  = '<span>Subject</span>';
       $str_anything .= '<a class="notAJAX button btn btn-info openPopUp" href="'.MWB.'bibliography/pop_topic.php?biblioID='.$rec_d['biblio_id'].'" title="'.__('Subjects/Topics').'">'.__('Add Subject(s)').'</a>';
-      $str_anything .= '<iframe name="topicIframe" id="topicIframe" class="borderAll" style="width: 100%; height: 70px;" src="'.MWB.'bibliography/iframe_topic.php?biblioID='.$rec_d['biblio_id'].'&block=1"></iframe>';
+      $str_anything .= '<div class="block" style="width: 100%;height: 70px;position: absolute;z-index: 7;"></div><iframe name="topicIframe" id="topicIframe" class="borderAll" style="width: 100%; height: 70px;" src="'.MWB.'bibliography/iframe_topic.php?biblioID='.$rec_d['biblio_id'].'&block=1"></iframe>';
       $setiadiForm->createAnything($str_anything);
       $str_anything = '';
     }
