@@ -1,0 +1,25 @@
+.per_title {
+	background: #3c8dbc !important;
+	width: 100%;
+	padding: 7px;
+	color: white;
+}
+.per_title h2 {
+	line-height: 0;
+	padding-bottom: 10px;
+	padding-left: 15px;
+}
+
+.message {
+	display: block;
+    width: 100%;
+    background-color: #dd4b39 !important;
+    padding-top: 10px;
+    padding-bottom: 1px;
+    font-size: 11pt;
+    color: white;
+}
+
+.message li {
+	list-style-type: none;
+}

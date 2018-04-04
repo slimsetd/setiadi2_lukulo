@@ -1,0 +1,111 @@
+/* Modified by Drajat Hasan */
+
+@media print {
+    .printPageInfo {
+        display: none;
+    }
+
+    p {
+        display: none;
+    }
+
+    a:link:after  {
+      content: " ("attr(href) ") ";    
+      font-size: 0%;   
+    }
+
+    a:visited:after {  
+      content: " ("attr(href) ") ";    
+      font-size: 0%;    
+    }
+
+
+}
+
+a:link:after  {
+  content: " ("attr(href) ") ";    
+  font-size: 0%;   
+}
+
+a:visited:after {  
+  content: " ("attr(href) ") ";    
+  font-size: 0%;    
+}
+
+
+.dataListPrinted {
+    width: 100%;
+    background-color: #000000 !important;
+}
+
+/* printed tabular data styles */
+.alterCellPrinted, .alterCellPrinted2 {
+    color: #000000 !important;
+    background: #CCCCCC !important;
+}
+
+.alterCellPrinted2 {
+    background: #FFFFFF !important;
+}
+
+.dataListHeaderPrinted {
+    background: #000000 !important;
+    color: #FFFFFF !important;
+}
+
+.dataListHeaderPrinted * {
+    font-weight: bold;
+    color: #FFFFFF !important;
+}
+
+.printPageInfo {
+    font-size: 120%;
+    padding: 5px;
+    color: #000000 !important;
+    background-color: #999999 !important;
+}
+
+.calendar {
+    width: 100%;
+    clear: both;
+    font-size: 110%;
+    border: 1px solid #999;
+    border-right: 0;
+}
+
+.calendar .dayname {
+    background: #999 !important;
+    color: #000 !important;
+    width: 14%;
+}
+
+.calendar td {
+    text-align: center;
+}
+
+.calendar td a {
+    color: #555555 !important;
+    display: block;
+}
+
+.calendar .week .even {
+    background-color: #fff !important;
+}
+
+.calendar .week .odd {
+    background-color: #ccc !important;
+}
+
+.calendar .day {
+    border-right: 1px solid #999 !important;
+}
+
+.calendar .week .none {
+    background: #999 !important;
+}
+
+.calendar .day .data {
+    font-weight: bold;
+    font-size: 120%;
+    color: #f33 !important;
+}

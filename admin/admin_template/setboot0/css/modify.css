@@ -1,0 +1,139 @@
+/*
+  Modify CSS Resster
+  by Youk
+*/
+.main_menu {
+  padding-left: 0px;
+  list-style-type: none;
+  display: block;
+  background: black;
+  color: #b8c7ce;;
+  width: 100%;
+  margin: 0px;
+}
+.sub_menu {
+  display: none;
+  padding: 0px !important;
+  list-style-type: none;
+  background: #2c3b41;
+  width: 100%;
+}
+
+/* ul.main_menu label {
+  border-left: 3px solid grey;
+}*/
+
+ul.sub_menu li {
+  width: 100%;
+  background: #2c3b41;
+}
+ul.sub_menu li a {
+  display: block !important; 
+  padding-top: 13px !important;
+  padding-bottom: 13px !important;
+}
+
+ul.sub_menu li a:hover {
+  background: #105E7C !important;
+  padding-top: 13px !important;
+  padding-bottom: 13px !important;
+}
+
+ul.sub_menu li span {
+  display: block;
+  padding: 10px;
+  background: #1e272e;
+}
+
+.general {
+  border-left: 3px solid #485460;
+}
+
+.bibliography {
+  border-left: 3px solid #f53b57;
+}
+
+.circulation {
+  border-left: 3px solid #3c40c6;
+}
+
+.membership {
+  border-left: 3px solid #0fbcf9;
+}
+
+.master_file {
+  border-left: 3px solid #00d8d6;
+}
+
+.stock_take {
+  border-left: 3px solid #05c46b;
+}
+
+.system {
+  border-left: 3px solid #ffa801;
+}
+
+.reporting {
+  border-left: 3px solid #ffd32a;
+}
+
+.serial_control {
+  border-left: 3px solid #ff3f34;
+}
+
+.s-user {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  float: left !important;
+}
+
+.s-header {
+  padding: 0px 5px 2px 5px !important;
+}
+.s-menu li label {
+    white-space: nowrap;
+    width: 100%;
+    text-align: left;
+    font-size: 8pt !important;
+    font-weight: 700 !important;
+}
+
+/* Modal Logout */
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
