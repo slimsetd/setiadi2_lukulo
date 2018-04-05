@@ -461,7 +461,7 @@ if (isset($_POST['detail']) OR (isset($_GET['action']) AND $_GET['action'] == 'd
     $style         = ($visibility)?'style="float:left; width:'.$inPopWidth.' !important; padding: 16.5px; margin-bottom: 15px;"':NULL;
     $info          = '<div class="infoBox" '.$style.'>Anda akan mengubah data biblio : <b>'.$rec_d['title'].'</b><br>Terakhir diubah '.$rec_d['last_update'].'</div>';
     $info         .= ($visibility)?'<div id="biblioImage" style="float: right;"><img src="'.$upper_dir.'lib/minigalnano/createthumb.php?filename=../../images/docs/'.urlencode($rec_d['image']).'&width=53" style="border: 1px solid #999999" /></div>':'<div id="biblioImage"><a></a></div>';
-    $str_anything  = '<div style="margin-top: 7px;">';
+    $str_anything  = '<div style="margin-top: 7px;float: left;width: 100%;">';
     $str_anything .= '<button name="saveData" class="save btn btn-success">Simpan</button>&nbsp;';
     $str_anything .= '<button class="cancel notAJAX push-right btn btn-warning">Batal</button>&nbsp;';
     $str_anything .= '<button class="delete notAJAX push-right btn btn-danger">Hapus Cantuman</button>&nbsp;';

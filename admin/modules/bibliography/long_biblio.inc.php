@@ -118,7 +118,7 @@ class longBiblioAtt
 		//$scm  = '';
 		$scm = '<table id="scm" width="100%">';
 		$scm .= '<tr>';
-		$scm .= '<td>Awalan</td><td>:</td><td><input type="text" id="prefix" placeholder="B" autocomplete="off"/></td>';
+		$scm .= '<td>Awalan</td><td>:</td><td><input type="text" id="prefix" placeholder="B" autocomplete="off" autofocus/></td>';
 		$scm .= '</tr>';
 		$scm .= '<tr>';
 		$scm .= '<td>Angka Nol</td><td>:</td><td><input type="text" id="zero" placeholder="00000" autocomplete="off"/></td>';
