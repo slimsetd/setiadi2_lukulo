@@ -75,6 +75,9 @@ define('SIMBIO', SB.'simbio2'.DS);
 // senayan library base dir
 define('LIB', SB.'lib'.DS);
 
+// Setiadi documentation base dir
+define('DOC', SB.'doc'.DS);
+
 // document, member and barcode images base dir
 define('IMG', 'images');
 define('IMGBS', SB.IMG.DS);
