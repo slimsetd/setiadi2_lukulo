@@ -33,6 +33,7 @@ require SB.'admin/default/session.inc.php';
 require SB.'admin/default/session_check.inc.php';
 require SIMBIO.'simbio_GUI/form_maker/setiadi_form_maker.php';
 require LIB.'setiadi_utility.inc.php';
+require LIB.'parsedown/Parsedown.php';
 
 // Save Proses
 if (isset($_POST['save'])) {
@@ -87,6 +88,12 @@ $form->createAnything('<button name="save" class="btn btn-success" style="margin
 // Printout
 echo $form->printOut();
 } else {
-	echo 'Hello';
+	echo '<link rel="stylesheet" type="text/css" href="'.SWB.'template/bootstrap/css/bootstrap.min.css">';
+	echo '<style>p{text-align: justify;} .doc {display: block; width: 100%; padding-left: 20px; padding-right: 20px;}</style>';
+	echo '<div class="doc">';
+	$html = file_get_contents(DOC.'general/recaptcha_doc/recaptcha.md');
+	$Parsedown = new Parsedown();
+	echo $Parsedown->text($html);
+	echo '</div>';
 }
 ?>
