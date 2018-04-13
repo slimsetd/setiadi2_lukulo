@@ -48,6 +48,7 @@ require SIMBIO.'simbio_FILE/simbio_directory.inc.php';
 require SIMBIO.'simbio_GUI/form_maker/simbio_form_table_AJAX.inc.php';
 require SIMBIO.'simbio_GUI/table/simbio_table.inc.php';
 require SIMBIO.'simbio_DB/simbio_dbop.inc.php';
+require LIB.'setiadi_utility.inc.php';
 
 ?>
 <fieldset class="menuBox">
@@ -125,6 +126,11 @@ if (isset($_POST['updateData'])) {
     $spellchecker_enabled = $_POST['spellchecker_enabled'] == '1'?true:false;
     $dbs->query('REPLACE INTO setting (setting_value, setting_name) VALUES (\''.serialize($spellchecker_enabled).'\',  \'spellchecker_enabled\')');
 
+    // Recaptcha
+    $enable_recaptcha_admin = (integer)$_POST['enable_recaptcha_admin'];
+    $enable_recaptcha_member = (integer)$_POST['enable_recaptcha_member'];
+    $decoding = serialize(array('smc' => $enable_recaptcha_admin, 'member' => $enable_recaptcha_member));
+    $dbs->query('UPDATE setting SET setting_value = \''.$decoding.'\' WHERE setting_name = \'recaptcha\'');
     // write log
     utility::writeLogs($dbs, 'staff', $_SESSION['uid'], 'system', $_SESSION['realname'].' change application global configuration');
     utility::jsAlert(__('Settings saved. Refreshing page'));
@@ -257,6 +263,19 @@ $form->addTextField('text', 'session_timeout', __('Session Login Timeout'), $sys
 // barcode encoding
 $form->addSelectList('barcode_encoding', __('Barcode Encoding'), $barcodes_encoding, $sysconf['barcode_encoding'] );
 
+// enable recaptcha
+$options = null;
+$options[] = array('0', __('Disable'));
+$options[] = array('1', __('Enable'));
+$form->addSelectList('enable_recaptcha', __('Recaptcha Admin'), $options, setiadi_utility::checkRecaptcha($dbs, 'smc')?'1':'0');
+
+// enable recaptcha
+$options = null;
+$options[] = array('0', __('Disable'));
+$options[] = array('1', __('Enable'));
+$form->addSelectList('enable_recaptcha_admin', __('Recaptcha Admin'), $options, setiadi_utility::checkRecaptcha($dbs, 'smc')?'1':'0');
+$form->addSelectList('enable_recaptcha_member', __('Recaptcha Member'), $options, setiadi_utility::checkRecaptcha($dbs, 'member')?'1':'0');
+$form->addAnything('Recaptcha API Key', '<a href="'.MWB.'system/pop_recaptcha.php" class="notAJAX btn btn-default openPopUp" title="Recaptcha API Key"><i class="fa fa-key"></i></a><a href="'.MWB.'system/pop_recaptcha.php?type=manual_page" class="notAJAX btn btn-default openPopUp" title="Manual Page"><i class="fa fa-question"></i></a>');
 // print out the object
 echo $form->printOut();
 /* main content end */
