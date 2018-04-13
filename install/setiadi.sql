@@ -361,7 +361,7 @@ CREATE TABLE `member` (
   `expire_date` date NOT NULL,
   `member_notes` text COLLATE utf8_unicode_ci,
   `is_pending` smallint(1) NOT NULL DEFAULT '0',
-  `mpasswd` char(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mpasswd` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
   `last_login` datetime DEFAULT NULL,
   `last_login_ip` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `input_date` date DEFAULT NULL,
