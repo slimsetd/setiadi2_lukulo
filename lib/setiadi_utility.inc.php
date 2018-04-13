@@ -30,6 +30,39 @@ if (!defined('INDEX_AUTH')) {
 
 class setiadi_utility
 {
+	// Function to load Recaptcha setting
+	public static function checkRecaptcha($obj_db, $section)
+	{
+		$decoding[$section] = false;
+		// Get Query
+		$get_data = $obj_db->query('SELECT setting_value FROM setting WHERE setting_name = "recaptcha"');
+		// Checking
+		if ($get_data->num_rows > 0) {
+			$data = $get_data->fetch_assoc();
+			$decoding = unserialize($data['setting_value']);
+		}
+		return $decoding[$section];
+	}
+
+	// Function to save recaptcha key
+	public static function saveKey($type, $pubKey, $privKey)
+	{
+		$status = false;
+		$template  = '<?php'."\n";
+		$template .= '$sysconf[\'captcha\'][\''.$type.'\'][\'folder\'] = \'recaptcha\'; // folder name inside the SENAYAN_LIB_DIR folder'."\n";
+		$template .= '$sysconf[\'captcha\'][\''.$type.'\'][\'incfile\'] = \'recaptchalib-v2.php\'; // php file that needs to be included in php file'."\n";
+		$template .= '$sysconf[\'captcha\'][\''.$type.'\'][\'publickey\'] = \''.$pubKey.'\'; // some captcha providers need this. Ajdust it with yours'."\n";
+		$template .= '$sysconf[\'captcha\'][\''.$type.'\'][\'privatekey\'] = \''.$privKey.'\'; // some captcha providers need this. Ajdust it with yours'."\n";
+		$template .= '?>';
+		// Save Template
+		$saveTemplate = file_put_contents(LIB.'recaptcha/'.$type.'_settings.inc.php', $template);
+		// Checking
+		if ($saveTemplate) {
+			$status = true;
+		}
+		return $status;
+	}
+
 	// Function to checking value of select
 	public static function newSelect($obj_db, $table, $coloumn, $value)
 	{

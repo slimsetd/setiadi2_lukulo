@@ -161,12 +161,10 @@ class member_logon
     public function nativeLogin() {
         $_sql_member_login = sprintf("SELECT m.member_id, m.member_name, m.inst_name,
             m.member_email, m.expire_date, m.register_date, m.is_pending,
-            m.member_type_id, mt.member_type_name, mt.enable_reserve, mt.reserve_limit
+            m.member_type_id, mt.member_type_name, mt.enable_reserve, mt.reserve_limit, m.mpasswd
             FROM member AS m LEFT JOIN mst_member_type AS mt ON m.member_type_id=mt.member_type_id
-            WHERE m.member_id='%s'
-                AND m.mpasswd=MD5('%s')", $this->obj_db->escape_string($this->username), $this->obj_db->escape_string($this->password));
+            WHERE m.member_id='%s'", $this->obj_db->escape_string($this->username));
         $_member_q = $this->obj_db->query($_sql_member_login);
-
         // error check
         if ($this->obj_db->error) {
             $this->errors = 'Failed to query member data from database with error: '.$this->obj_db->error;
@@ -179,6 +177,11 @@ class member_logon
         }
         // get user info
         $this->user_info = $_member_q->fetch_assoc();
+        // Checking hash
+        if (!password_verify($this->obj_db->escape_string($this->password), $this->user_info['mpasswd'])) {
+            $this->errors = 'Password not match and md5 mechanism are detected!';
+            return false;
+        }
         return true;
     }
 
