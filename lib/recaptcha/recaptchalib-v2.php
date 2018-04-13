@@ -84,7 +84,7 @@ function recaptcha_check_answer($privkey, $remoteip, $gRecapresponse)
 		$error = 'error-codes'; // Inspired from Ido Alit
 		$recaptcha_response->error = print_r($result->$error); // because the result of object error-codes is an array.
 		// For debugging purpose
-		$recaptcha_response->dump = $response;
+		// $recaptcha_response->dump = $response;
 	} else {
 		$recaptcha_response->is_valid = true;
 	}
