@@ -20,16 +20,8 @@
 /* Checking Dependences Template */
 include 'checkDependens.inc.php';
 // Visibility
-// $isVisible = ($error > 1)?'disabled':NULL;
-switch ($error) {
-	case 'value':
-		# code...
-		break;
-	
-	default:
-		# code...
-		break;
-}
+$isVisible = ($error > 1)?'disabled':NULL;
+
 // Function to set status
 function setStatus($serviceName)
 {
