@@ -25,6 +25,7 @@
 	<head>
 		<title>Setiadi 2 :: Installer</title>
 		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../template/bootstrap/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="../template/bootstrap/css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="asset/css/main.css">
 	</head>
@@ -37,11 +38,12 @@
 				<div class="banner">
 				</div>
 				<div class="footer">
-					<a class="btn btn-link" href="#" style="margin: 17px;">Info</a>
-					<a class="btn btn-link" href="#">About</a>
+					<a class="btn btn-link" href="#" style="margin: 17px;" data="installer-info" title="Informasi" data-toggle="modal" data-target="#myModal">Info</a>
+					<a class="btn btn-link" href="#" data-toggle="modal" data="setiadi-about" title="Tentang" data-target="#myModal">About</a>
 					<button style="margin: 20px; float: right;" class="next1 btn btn-primary">Next</button>
 				</div>
 				<div>
+					<script type="text/javascript" src="doDi.js"></script>
 					<script type="text/javascript">
 						$('.next1').click(function(){
 							// $('.greeter').addClass('animated fadeOut');
@@ -58,5 +60,22 @@
 					</script>
 				</div>
 			</div>
+			<div class="modal fade" id="myModal" role="dialog">
+		    <div class="modal-dialog">
+		      <!-- Modal content-->
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title"></h4>
+		        </div>
+		        <div class="modal-body">
+		          
+		        </div>
+		        <div class="modal-footer">
+		          <button type="button" id="close" class="btn btn-default" data-dismiss="modal">Close</button>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
 	</body>
 </html>

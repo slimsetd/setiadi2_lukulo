@@ -20,12 +20,23 @@
 /* Checking Dependences Template */
 include 'checkDependens.inc.php';
 // Visibility
-$isVisible = ($error > 1)?'disabled':NULL;
+// $isVisible = ($error > 1)?'disabled':NULL;
+switch ($error) {
+	case 'value':
+		# code...
+		break;
+	
+	default:
+		# code...
+		break;
+}
 // Function to set status
 function setStatus($serviceName)
 {
-	$class = ($serviceName == 1)?'text-info fa fa-check-circle':'text-red fa fa-exclamation-circle';
-	return $class;
+	$class 	= ($serviceName == 1)?'text-info fa fa-check-circle':'text-red fa fa-exclamation-circle';
+	$title 	= ($serviceName == 1)?'Ketergantungan sudah terpasang.':'Kertergantungan belum terpasang mohon tekan pranala \'Info\' pada pojok kiri bagian bawah untuk detil lebih lanjut.';
+	$result = array($class, $title);
+	return $result;
 }
 ?>
 <div class="animated fadeIn">
@@ -40,40 +51,41 @@ function setStatus($serviceName)
 				<td class="dep-label">PHP Version</td>
 				<td class="small">:</td>
 				<td class="value"><b><?php echo $PHPversion;?></b></td>
-				<td class="small2"><b style="font-size: 16pt;" class="<?php echo setStatus($dependence['PHP']);?>"></b></td>
+				<td class="small2"><b style="font-size: 16pt;" class="<?php $php = setStatus($dependence['PHP']); echo $php[0];?>" title="<?php echo $php[1];?>"></b></td>
 			</tr>
 			<tr>
 				<td class="dep-label">Database Engine</td>
 				<td class="small">:</td>
 				<td class="value"><b><?php echo $MySQLiLabel;?></b></td>
-				<td class="small2"><b style="font-size: 16pt;" class="<?php echo setStatus($dependence['MySQLi']);?>"></b></td>
+				<td class="small2"><b style="font-size: 16pt;" class="<?php $mysql = setStatus($dependence['MySQLi']); echo $mysql[0]?>" title="<?php echo $mysql[1];?>"></b></td>
 			</tr>
 			<tr>
 				<td class="dep-label">GD</td>
 				<td class="small">:</td>
 				<td class="value"><b><?php echo $GDLabel;?></b></td>
-				<td class="small2"><b style="font-size: 16pt;" class="<?php echo setStatus($dependence['GD']);?>"></b></td>
+				<td class="small2"><b style="font-size: 16pt;" class="<?php $gd = setStatus($dependence['GD']);echo $gd[0];?>" title="<?php echo $gd[1];?>"></b></td>
 			</tr>
 			<tr>
 				<td class="dep-label">YAZ</td>
 				<td class="small">:</td>
 				<td class="value"><b><?php echo $YAZLabel;?></b></td>
-				<td class="small2"><b style="font-size: 16pt;" class="<?php echo setStatus($dependence['YAZ']);?>"></b></td>
+				<td class="small2"><b style="font-size: 16pt;" class="<?php $yaz = setStatus($dependence['YAZ']); echo $yaz[0]?>" title="<?php echo $yaz[1];?>"></b></td>
 			</tr>
 			<tr>
 				<td class="dep-label">Gettext</td>
 				<td class="small">:</td>
 				<td class="value"><b><?php echo $GettextLabel;?></b></td>
-				<td class="small2"><b style="font-size: 16pt;" class="<?php echo setStatus($dependence['Gettext']);?>"></b></td>
+				<td class="small2"><b style="font-size: 16pt;" class="<?php $gettext = setStatus($dependence['Gettext']);echo $gettext[0];?>" title="<?php echo $gettext[1];?>"></b></td>
 			</tr>
 		</table>
 	</div>
 	<div class="footer">
-		<a class="btn btn-link" href="#" style="margin: 17px;">Info</a>
-		<a class="btn btn-link" href="#">About</a>
+		<a class="btn btn-link" href="#" style="margin: 17px;" title="Informasi Ketergantungan" data="dependency-info" data-toggle="modal" data-target="#myModal">Info</a>
+		<!-- <a class="btn btn-link" href="#">About</a> -->
 		<button style="margin: 20px; float: right;" class="next2 btn btn-primary" <?php echo $isVisible;?> >Next</button>
 	</div>
 	<div>
+		<script type="text/javascript" src="doDi.js"></script>
 		<script type="text/javascript">
 			$('.next2').click(function(){
 				$('.greeter').load('configDB.php', {limit: 25}, 

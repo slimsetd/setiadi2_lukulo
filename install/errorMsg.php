@@ -40,9 +40,11 @@ if (isset($_GET['msg'])) {
 		<strong><?php echo $msg;?></strong>
 	</div>
 	<div class="btnArea">
-		<button class="back btn btn-primary">Back to form</button>
+		<a class="btn btn-link" href="#" style="margin: 17px;" title="Informasi Galat" data="error-msg" data-toggle="modal" data-target="#myModal">Info</a>
+		<button style="margin: 20px; float: right;" class="back btn btn-primary">Back to form</button>
 	</div>
 	<div>
+		<script type="text/javascript" src="doDi.js"></script>
 		<script type="text/javascript">
 		// Back to db configuration form
 			$('.back').click(function(){

@@ -1,0 +1,1 @@
+__Pemasang__ (*installer*) ini digunakan untuk memasang Setiadi kedalam sistem anda secara terpandu dan ringkas. Adapun teknis untuk *upgrade* dari Setiadi 1 ke Setiadi 2 dapat ditanyakan melalui pranala berikut *admin@slimsetd.id*.

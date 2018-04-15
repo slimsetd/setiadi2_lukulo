@@ -143,3 +143,14 @@ input[type="password"] {
 .text-red {
 	color: #ff4e4e;
 }
+
+.doc {
+    text-align: justify;
+}
+
+.modal-body {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 0px;
+    padding-bottom: 10px;
+}
