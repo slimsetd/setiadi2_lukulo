@@ -45,7 +45,23 @@ class ReCaptchaResponse {
  */
 function getResponse($serverResAddress, $secret, $captchaResponse, $remoteIP)
 {
-	$response = file_get_contents($serverResAddress.'?secret='.$secret.'&response='.$captchaResponse.'&remoteip='.$remoteIP);
+	$address = $serverResAddress.'?secret='.$secret.'&response='.$captchaResponse.'&remoteip='.$remoteIP;
+	$response = false;
+	// We check the allow_url_fopen is enable or not in your server
+	// several cpanel server disable the allow_url_fopen
+	if (ini_get('allow_url_fopen')) {
+	    $response = file_get_contents($address);
+	} else {
+	    // The alternative for resolve the problem is use curl_init
+	    if (!function_exists('curl_init')){ 
+	        die('CURL is not installed!');
+	    }
+	    $ch = curl_init();
+	    curl_setopt($ch, CURLOPT_URL, $Url);
+	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	    $response = curl_exec($ch);
+	    curl_close($ch);
+	}
 	return $response;
 }
 
