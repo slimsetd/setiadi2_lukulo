@@ -57,7 +57,7 @@ function getResponse($serverResAddress, $secret, $captchaResponse, $remoteIP)
 	        die('CURL is not installed!');
 	    }
 	    $ch = curl_init();
-	    curl_setopt($ch, CURLOPT_URL, $Url);
+	    curl_setopt($ch, CURLOPT_URL, $address);
 	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	    $response = curl_exec($ch);
 	    curl_close($ch);
