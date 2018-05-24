@@ -114,11 +114,12 @@ if (isset($_POST['saveData']) AND $can_read AND $can_write) {
     } else {
       $data['publisher_id'] = (empty($_POST['publisherID']))?'0':trim($dbs->escape_string(strip_tags($_POST['publisherID'])));
     } 
-
-    $data['publish_year'] = trim($dbs->escape_string(strip_tags($_POST['year'])));
-    $data['collation'] = trim($dbs->escape_string(strip_tags($_POST['collation'])));
-    $data['series_title'] = trim($dbs->escape_string(strip_tags($_POST['seriesTitle'])));
-    $data['call_number'] = trim($dbs->escape_string(strip_tags($_POST['callNumber'])));
+	
+    $data['publish_year'] 	= trim($dbs->escape_string(strip_tags($_POST['year'])));
+    $data['collation'] 		= trim($dbs->escape_string(strip_tags($_POST['collation'])));
+    $data['series_title'] 	= trim($dbs->escape_string(strip_tags($_POST['seriesTitle'])));
+    $data['call_number'] 	= trim($dbs->escape_string(strip_tags($_POST['callNumber'])));
+	$data['language_id']	= trim($dbs->escape_string(strip_tags($_POST['languageID'])));
     // check place
     if (!is_numeric($_POST['placeID']) AND !empty($_POST['placeID'])) {
       $getID = setiadi_utility::newSelect($dbs, 'mst_place', 'place_name', $dbs->escape_string($_POST['placeID']));
@@ -392,10 +393,11 @@ if (isset($_POST['detail']) OR (isset($_GET['action']) AND $_GET['action'] == 'd
   /* Modification for Setiadi 2 by Drajat Hasan */
   $itemID = (integer)isset($_POST['itemID'])?$_POST['itemID']:0;
   $select_op = new simbio_dbop($dbs);
-  $select_op->coloumn = array('b.*', 'p.publisher_name', 'pl.place_name', 'g.gmd_name', 'f.frequency');
+  $select_op->coloumn = array('b.*', 'p.publisher_name', 'pl.place_name', 'g.gmd_name', 'lg.language_name','f.frequency');
   $select_op->table  = 'biblio AS b ';
   $select_op->table .= 'LEFT JOIN mst_frequency AS f ON b.frequency_id=f.frequency_id ';
   $select_op->table .= 'LEFT JOIN mst_gmd AS g ON b.gmd_id=g.gmd_id ';
+  $select_op->table .= 'LEFT JOIN mst_language AS lg ON b.language_id=lg.language_id ';
   $select_op->table .= 'LEFT JOIN mst_publisher AS p ON b.publisher_id=p.publisher_id ';
   $select_op->table .= 'LEFT JOIN mst_place AS pl ON b.publish_place_id=pl.place_id ';
   $select_op->criteria = sprintf('biblio_id=%d', $itemID);
@@ -424,7 +426,12 @@ if (isset($_POST['detail']) OR (isset($_GET['action']) AND $_GET['action'] == 'd
   while ($gmd_d = $gmd_q->fetch_row()) {
     $gmd_options[] = array($gmd_d[0], $gmd_d[1]);
   }
-
+  //languange options
+  $lang_q = $dbs->query('SELECT language_id, language_name FROM mst_language');
+  $lang_options = array();
+  while ($lang_d = $lang_q->fetch_row()) {
+    $lang_options[] = array($lang_d[0], $lang_d[1]);
+  }
   //frequency options
   $freq_q = $dbs->query('SELECT frequency_id, frequency FROM mst_frequency');
   $freq_options[] = array('0', __('Not Applicable'));
@@ -527,6 +534,9 @@ if (isset($_POST['detail']) OR (isset($_GET['action']) AND $_GET['action'] == 'd
     $setiadiForm->createSelect('Publishing Place', $rec_d['place_name'], 'placeID', $plc_options);
     // Collation
     $setiadiForm->createText('Collation', $rec_d['collation'], 'collation');
+	// language
+	$setiadiForm->createSelect('Language', $rec_d['language_name'], 'languageID', $lang_options);
+	
     // Cover
     $str_image  = '<label>Cover ETD</label>';
     $str_image .= ($rec_d['image'])?'<div id="imageFilename"><a href="'.SWB.'images/docs/'.$rec_d['image'].'" class="openPopUp notAJAX"><strong>'.$rec_d['image'].'</strong></a> <a href="'.MWB.'bibliography/index.php" postdata="removeImage=true&bimg='.$itemID.'&img='.$rec_d['image'].'" loadcontainer="imageFilename" class="makeHidden removeImage">'.__('REMOVE IMAGE').'</a></div>':NULL;
@@ -549,6 +559,7 @@ if (isset($_POST['detail']) OR (isset($_GET['action']) AND $_GET['action'] == 'd
       $setiadiForm->createAnything($str_anything);
       $str_anything = '';
     }
+	
     // Series Title
     $setiadiForm->createTextArea('Abstract', $rec_d['notes'], 'notes');
     // Classification
@@ -618,6 +629,11 @@ if (isset($_POST['detail']) OR (isset($_GET['action']) AND $_GET['action'] == 'd
     $setiadiForm->createSelect('Publishing Place', '', 'placeID', $plc_options);
     // Collation
     $setiadiForm->createText('Collation', '', 'collation');
+	
+	// language
+   $setiadiForm->createSelect('Language', '', 'languageID', $lang_options);
+	
+	
     // Cover
     $str_image  = '<label>Kover Buku</label>';
     $str_image .= simbio_form_element::textField('file', 'image');
