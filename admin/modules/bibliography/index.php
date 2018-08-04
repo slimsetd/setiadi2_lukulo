@@ -534,8 +534,8 @@ if (isset($_POST['detail']) OR (isset($_GET['action']) AND $_GET['action'] == 'd
     $setiadiForm->createSelect('Publishing Place', $rec_d['place_name'], 'placeID', $plc_options);
     // Collation
     $setiadiForm->createText('Collation', $rec_d['collation'], 'collation');
-	// language
-	$setiadiForm->createSelect('Language', $rec_d['language_name'], 'languageID', $lang_options);
+	  // language
+	  $setiadiForm->createSelect('Language', $rec_d['language_name'], 'languageID', $lang_options);
 	
     // Cover
     $str_image  = '<label>Cover ETD</label>';
@@ -582,6 +582,9 @@ if (isset($_POST['detail']) OR (isset($_GET['action']) AND $_GET['action'] == 'd
     $setiadiForm->setSeparator('gmd', 'activeAppear', '');
     // Publishing Place
     $setiadiForm->createSelect('GMD Type', '', 'gmd_id', $gmd_options);
+    // Next Button
+    $str_anything = '<a href="#" des="bibliografi" style="margin-top: 20px;" class="nextBtn notAJAX btn btn-success">Next</a>';
+    $setiadiForm->createAnything($str_anything);
     // Lash Biblio Sep
     $setiadiForm->setCloseSeparator();
     // Biblio
@@ -655,6 +658,10 @@ if (isset($_POST['detail']) OR (isset($_GET['action']) AND $_GET['action'] == 'd
     $setiadiForm->createText('Klasifikasi', '', 'class');
     // Collation
     $setiadiForm->createText('No.Panggil', '', 'callNumber');
+    // Next Button
+    $str_anything  = '<a href="#" des="gmd" style="margin-top: 20px;" class="nextBtn notAJAX btn btn-success">Previous</a>';
+    $str_anything .= '<a href="#" des="approval" style="margin-left: 10px; margin-top: 20px;" class="nextBtn notAJAX btn btn-success">Next</a>';
+    $setiadiForm->createAnything($str_anything);
     // Lash Biblio Sep
     $setiadiForm->setCloseSeparator();
     // Approval
@@ -705,6 +712,11 @@ if (isset($_POST['detail']) OR (isset($_GET['action']) AND $_GET['action'] == 'd
       $('#imageFilename a').removeAttr('style');
       $('.dateField a').attr('style', 'cursor: pointer;');
       $('.setiadi-form').find('.block').remove();
+    });
+
+    $('.nextBtn').on('click', function(){
+      var des = $(this).attr('des');
+      $('.'+des+'l').trigger('click');
     });
     // Step Click Event
     $('.li-steps').click(function(){
