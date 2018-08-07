@@ -20,18 +20,15 @@
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 *
 */
-
 // be sure that this file not accessed directly
 if (!defined('INDEX_AUTH')) {
     die("can not access this file directly");
 } elseif (INDEX_AUTH != 1) {
     die("can not access this file directly");
 }
-
 $allowed_counter_ip = array('127.0.0.1');
 $remote_addr = $_SERVER['REMOTE_ADDR'];
 $confirmation = 0;
-
 foreach ($allowed_counter_ip as $ip) {
 // change wildcard
     $ip = preg_replace('@\*$@i', '.', $ip);
@@ -39,16 +36,12 @@ foreach ($allowed_counter_ip as $ip) {
         $confirmation = 1;
     }
 }
-
 if (!$confirmation) {
     header ("location: index.php");
 }
-
 // start the output buffering for main content
 ob_start();
-
 define('INSTITUTION_EMPTY', 11);
-
 if (isset($_POST['counter'])) {
     if (trim($_POST['memberID']) == '') {
         die();
@@ -94,8 +87,6 @@ function setCounter($str_member_ID) {
   }
   return true;
 }
-
-
 $memberID = trim($_POST['memberID']);
 $counter = setCounter($memberID);
 if ($counter === true) {
@@ -110,7 +101,6 @@ if ($counter === true) {
 }
 exit();
 }
-
 ?>
 <div id="masking"></div>
     <div class="container">
@@ -157,19 +147,15 @@ exit();
 
 <script type="text/javascript">
 jQuery(document).ready( function() {
-
 // give focus to first field
 jQuery('#memberID').focus();
-
 var visitorCounterForm = jQuery('#visitorCounterForm');
-
 // AJAX counter error handler
 visitorCounterForm.ajaxError( function() {
     alert('Error inserting counter data to database!');
     jQuery(this).enableForm().find('input[type=text]').val('');
     jQuery('#memberID').focus();
 });
-
 // AJAX counter complete handler
 visitorCounterForm.ajaxComplete( function() {
     jQuery(this).enableForm().find('input[type=text]').val('');
@@ -181,7 +167,6 @@ jQuery('#visitorCounterPhoto')[0].src = imageSRC;
 }
 jQuery('#memberID').focus();
 });
-
 // register event
 visitorCounterForm.submit(function(evt) {
     evt.preventDefault();
@@ -195,7 +180,7 @@ var formAction = theForm.attr('action');
 var formData = theForm.serialize();
 formData += '&counter=true';
 // block the form
-theForm.disableForm();
+
 jQuery('#counterInfo').css({'display': 'block'}).html('PLEASE WAIT...');
 // create AJAX request for submitting form
 jQuery.ajax(
@@ -212,7 +197,6 @@ jQuery.ajax(
         }
     });
 });
-
 });
 </script>
 
@@ -221,5 +205,5 @@ jQuery.ajax(
 $main_content = ob_get_clean();
 // page title
 $page_title = $sysconf['library_name'].' :: Visitor Counter';
-require_once $sysconf['template']['dir'].'/'.$sysconf['template']['theme'].'/visitor_template.inc.php';
+require_once $sysconf['template']['dir'].'/'.$sysconf['template']['theme'].'/login_template.inc.php';
 exit();
