@@ -3,7 +3,8 @@
  * simbio_form_maker
  * Class for creating form with element based on simbio form elements
  *
- * Copyright (C) 2007,2008  Arie Nugraha (dicarve@yahoo.com)
+ * Copyright (C) 2007,2008,2018  Arie Nugraha (dicarve@yahoo.com)
+ * CSRF feature is taken from SLiMS 8 Akasia
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
