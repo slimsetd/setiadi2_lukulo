@@ -79,6 +79,12 @@ if (isset($_POST['saveData'])) {
     $realName = trim(strip_tags($_POST['realName']));
     $passwd1 = trim($_POST['passwd1']);
     $passwd2 = trim($_POST['passwd2']);
+    // Prevent CSRF Attack
+    if (!simbio_form_maker::isTokenValid()) {
+    utility::jsAlert(__('Invalid form submission token!'));
+    utility::writeLogs($dbs, 'staff', $_SESSION['uid'], 'system', 'Invalid form submission token, might be a CSRF attack from '.$_SERVER['REMOTE_ADDR']);
+    exit();
+    }
     // check form validity
     if (empty($userName) OR empty($realName)) {
         utility::jsAlert(__('User Name or Real Name can\'t be empty'));
